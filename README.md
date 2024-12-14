@@ -1,2 +1,0 @@
-# hotelapp
-hotel app thingy
