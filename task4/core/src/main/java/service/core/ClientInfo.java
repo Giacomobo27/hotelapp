@@ -1,5 +1,7 @@
 package service.core;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /**
  * Data Class that contains client information
  * 
@@ -7,17 +9,13 @@ import java.io.Serializable;
  *
  */
 public class ClientInfo implements Serializable {
-	public static final char MALE				= 'M';
-	public static final char FEMALE				= 'F';
 	
-	public ClientInfo(String name, char sex, int age, double height, double weight, boolean smoker, boolean medicalIssues) {
-		this.name = name;
-		this.gender = sex;
-		this.age = age;
-		this.height = height;
-		this.weight = weight;
-		this.smoker = smoker;
-		this.medicalIssues = medicalIssues;
+	public ClientInfo(String location, int stars, double budget, LocalDate bookin, LocalDate bookout) {
+		this.location = location; 
+		this.stars = stars;
+		this.budget = budget;
+		this.bookin = bookin;
+		this.bookout = bookout;
 	}
 	
 	public ClientInfo() {}
@@ -27,11 +25,21 @@ public class ClientInfo implements Serializable {
 	 * methods is unnecessary as (1) set/get makes the field mutable anyway, and
 	 * (2) set/get introduces additional method calls, which reduces performance.
 	 */
-	public String name;
-	public char gender;
-	public int age;
-	public double height;
-	public double weight;
-	public boolean smoker;
-	public boolean medicalIssues;
+	public String location;
+	public int stars;
+	public double budget;
+    LocalDate bookin;
+	LocalDate bookout;
+
+	boolean cancel = false;
+	boolean checking  = true;
+	boolean boooking = false;
+
+    //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        // Format the date
+	//String formattedDate = date.format(formatter);
+
+
+
+
 }
