@@ -18,7 +18,10 @@ public class Quotation implements Serializable{
 
 	public Quotation() {}
 	
-	public String company;
-	public String reference;
-	public double price;
+	//public String company; // list of hotel classes
+	//public String reference; // chosen hotel classes 
+	public double price;  
+	boolean cancel = false;
+	boolean checking  = true;
+	boolean boooking = false;
 }
