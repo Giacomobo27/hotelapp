@@ -8,7 +8,7 @@ public class Hotel implements Serializable {
     String address;
     int rating;
     int reviews;
-    double price
+    double price;
     public Hotel(String name,String address, int rating,int reviews, double price ) {
         this.name = name;
         this.address = address;
