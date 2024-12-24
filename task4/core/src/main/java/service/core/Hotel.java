@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class Hotel implements Serializable {
     String name;
+    String address;
     int rating;
     int reviews;
     double price
