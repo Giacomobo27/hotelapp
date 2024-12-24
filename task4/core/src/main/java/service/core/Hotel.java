@@ -17,5 +17,6 @@ public class Hotel implements Serializable {
         this.price = price,
 
     }
+    public Hotel() {}
 }
 
