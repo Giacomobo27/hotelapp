@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 /**
  * Data Class that contains client information
- * 
- *
  */
 public class ClientInfo implements Serializable {
 	
@@ -25,6 +23,7 @@ public class ClientInfo implements Serializable {
 	public double budget;
     public LocalDate bookin;
 	public LocalDate bookout;
+	public Hotel chosenHotel; 
 
 	public boolean cancel = false;
 	public boolean checking  = false;

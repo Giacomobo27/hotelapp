@@ -30,10 +30,10 @@ import service.core.Quotation; //serialized
 public class BrokerController {
 
     
- @Value("${server.port}")
- private int port;
+ @Value("${server.port}")   //Retrieves the application's server port from the configuration file
+ private int port; 
  
- private String getHost() {
+ private String getHost() { //Determines the host address and port of the server
   try {
   return InetAddress.getLocalHost().getHostAddress() + ":" + port;
   } catch (UnknownHostException e) {
@@ -43,7 +43,7 @@ public class BrokerController {
 
 
 
-private Map<Integer, Application> applications = new HashMap<>();   //or hashmap?
+private Map<Integer, Application> applications = new HashMap<>();   //store all applications
 
     // RestTemplate is used to send HTTP requests to quotation services
  private RestTemplate restTemplate = new RestTemplate();
@@ -51,9 +51,9 @@ private Map<Integer, Application> applications = new HashMap<>();   //or hashmap
 
     // List of URLs for quotation services
     private static final String[] SERVICES = {
-        "http://localhost:8080/quotations",
-        "http://localhost:8081/quotations",
-        "http://localhost:8082/quotations"
+        "http://localhost:8080/quotations", //auld
+        "http://localhost:8081/quotations", //girls
+        "http://localhost:8082/quotations" //dodgy
     };
 
     /**
@@ -72,9 +72,9 @@ private Map<Integer, Application> applications = new HashMap<>();   //or hashmap
             try {
 
                 // Send a POST request to the current quotation service with the ClientInfo object
-                ResponseEntity<Quotation> response = restTemplate.postForEntity(serviceUrl, info, Quotation.class);
-                if (response.getStatusCode().equals(HttpStatus.CREATED)) {
-                    application.quotations.add(response.getBody());  // Add the quotation to the application's list, there should be automatic conversion from json to quotation
+                ResponseEntity<Quotation> response = restTemplate.postForEntity(serviceUrl, info, Quotation.class);  //send POST request to QS url, expect quotation in return
+                if (response.getStatusCode().equals(HttpStatus.CREATED)) { // if response is positive
+                    application.quotations.add(response.getBody());  // Add the quotation to the application's quotation list, there should be automatic conversion from json to quotation
                 }
             } catch (Exception e) {
                 System.out.println("Failed to contact service: " + serviceUrl);

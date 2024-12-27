@@ -22,8 +22,8 @@ import service.core.Quotation; //serialized
 @RestController
 public class QuotationController {
  private Map<String, Quotation> quotations = new TreeMap<>();  
- //We use a map because it will allow quick access to specific quotations when we implement the /quotations/{id}
-//endpoint. Here, the {id} will be the key to retrieving the quotation.
+ //We use a map for quick access to specific quotations when we implement the /quotations/{id}
+//endpoint.  {id} is the key to retrieve the quotation.
  private AFQService service = new AFQService();
 
  @Value("${server.port}")
@@ -40,8 +40,9 @@ public class QuotationController {
 
 
 
-//getQuotations() method is mapped to an HTTP GET request to the /quotations URL for 
-//“application/json” content by the @GetMapping
+//This endpoint can be used by a client or service to get a 
+//list of all available quotation resources.
+//Purpose: Retrieves a list of all quotations as URLs.
 @GetMapping(value="/quotations", produces="application/json")
 public ResponseEntity<ArrayList<String>> getQuotations() {
  ArrayList<String> list = new ArrayList<>();
@@ -51,14 +52,14 @@ public ResponseEntity<ArrayList<String>> getQuotations() {
  }
  return ResponseEntity.status(HttpStatus.OK).body(list);
 }
- //This method returns an object of type 
-//ResponseEntity. This is a Spring Boot class that can be used to send back a variety of HTTP responses
+ 
     
-
+//when broker send clientinfo and expect quotation in return, this method is triggered
+// It Creates a new quotation based on the provided ClientInfo
 @PostMapping(value="/quotations", consumes="application/json")
 public ResponseEntity<Quotation> createQuotation(
  @RequestBody ClientInfo info) {
- Quotation quotation = service.generateQuotation(info);
+ Quotation quotation = service.generateQuotation(info);  //here it calls the generatequotation method
  quotations.put(quotation.reference, quotation);
  String url = "http://"+getHost()+"/quotations/"
  + quotation.reference;
@@ -68,6 +69,7 @@ public ResponseEntity<Quotation> createQuotation(
  .header("Content-Location", url)
  .body(quotation);
 }
+// ok no problem compatibility
 
    
     @GetMapping(value="/quotations/{id}", produces="application/json")

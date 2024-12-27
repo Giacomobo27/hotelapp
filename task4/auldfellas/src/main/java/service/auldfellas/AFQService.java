@@ -23,7 +23,7 @@ public class AFQService extends AbstractQuotationService {
 	 * additional 10% discount for males over 60
 	 */
 	@Override
-	public Quotation generateQuotation(ClientInfo info) {
+	public Quotation generateQuotation(ClientInfo info) {  // should be fetching data from DB
 		// Create an initial quotation between 600 and 1200
 		double price = generatePrice(600, 600);
 		
