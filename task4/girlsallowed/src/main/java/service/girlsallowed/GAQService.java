@@ -5,9 +5,8 @@ import service.core.ClientInfo;
 import service.core.Quotation;
 
 /**
- * Implementation of the Girls Aloud insurance quotation service.
- * 
- * @author Rem
+ * GA is CANCEL
+ * endpoint on 8081/quotations
  *
  */
 public class GAQService extends AbstractQuotationService {

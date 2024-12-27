@@ -5,10 +5,8 @@ import service.core.ClientInfo;
 import service.core.Quotation;
 
 /**
- * Implementation of Quotation Service for Dodgy Geezers Insurance Company
- *  
- * @author Rem
- *
+ * DGQ is BOOKING 
+ * endpoint on 8082/quotations
  */
 public class DGQService extends AbstractQuotationService {
 	// All references are to be prefixed with an DG (e.g. DG001000)

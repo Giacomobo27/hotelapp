@@ -5,23 +5,22 @@ import service.core.ClientInfo; //serialized
 import service.core.Quotation; //serialized
 
 /**
- * Implementation of the AuldFellas insurance quotation service.
+ * Auldfellas is CHECK AVAILABILITY
+ * endpoint on 8080/quotations
  * 
- * @author Rem
- *
+ *need to change:
+ 1. connect with database
+ 2. get list of hotels from db
+ 3. create Quotation and return 
  */
+
+ //do not change class names of prefix for the momennt!
 public class AFQService extends AbstractQuotationService {
 	// All references are to be prefixed with an AF (e.g. AF001000)
 	public static final String PREFIX = "AF";
 	public static final String COMPANY = "Auld Fellas Ltd.";
 	
-	/**
-	 * Quote generation:
-	 * 30% discount for being male
-	 * 20% increase for being female
-	 * 10% discount for males over 50 
-	 * additional 10% discount for males over 60
-	 */
+
 	@Override
 	public Quotation generateQuotation(ClientInfo info) {  // should be fetching data from DB
 		// Create an initial quotation between 600 and 1200
