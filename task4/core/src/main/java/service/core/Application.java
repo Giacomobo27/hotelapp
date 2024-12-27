@@ -16,9 +16,5 @@ public class Application {
  public Application() {}
 
 
- //create applications endpoint
-
- //get
- //post
 
 }

@@ -5,23 +5,26 @@ import java.io.Serializable;
 /**
  * Class to store the quotations returned by the quotation services
  * 
- * @author Rem
  *
  */
 public class Quotation implements Serializable{
-	public Quotation(String company, String reference, double price) {
-		this.company = company;
-		this.reference = reference;
-		this.price = price;
-		
-	}
 
-	public Quotation() {}
+	public Quotation(LinkedList<Hotel> listHotels, Hotel chosenHotel, boolean cancel, boolean checking, boolean booking) {
+		this.listHotels = listHotels != null ? listHotels : new LinkedList<>();
+		this.chosenHotel = chosenHotel;
+		this.cancel = cancel;
+		this.checking = checking;
+		this.booking = booking;
+	}
 	
-	//public String company; // list of hotel classes
-	//public String reference; // chosen hotel classes 
-	public double price;  
-	boolean cancel = false;
-	boolean checking  = true;
-	boolean boooking = false;
+
+	public Quotation() {}  //empty or not?
+	
+
+	
+	public LinkedList<Hotel> listHotels; //it was company
+	public Hotel chosenHotel;  // it was reference
+	public boolean cancel = false;
+	public boolean checking  = true;
+	public boolean boooking = false;
 }
