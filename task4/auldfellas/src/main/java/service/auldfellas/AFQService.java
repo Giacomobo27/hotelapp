@@ -3,6 +3,7 @@ package service.auldfellas;
 import service.core.AbstractQuotationService;
 import service.core.ClientInfo; //serialized
 import service.core.Quotation; //serialized
+import service.core.Hotel;
 
 /**
  * Auldfellas is CHECK AVAILABILITY
@@ -10,8 +11,9 @@ import service.core.Quotation; //serialized
  * 
  *need to do:
  1. connect with database
- 2. get list of hotels from db
- 3. create Quotation and return 
+ 2.analize Clientinfo request
+ 3. get list of hotels from DB
+ 4. create Quotation and return 
  */
 
  //do not change class names of prefix for the momennt!
