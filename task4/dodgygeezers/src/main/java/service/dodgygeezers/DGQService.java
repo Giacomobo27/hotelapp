@@ -3,6 +3,7 @@ package service.dodgygeezers;
 import service.core.AbstractQuotationService;
 import service.core.ClientInfo;
 import service.core.Quotation;
+import service.core.Hotel;
 
 /**
  * DGQ is BOOKING 
@@ -43,7 +44,7 @@ public class DGQService extends AbstractQuotationService {
 	    listHotels.add(h3);
 
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), "", false, false, true); 
+		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), "booking ecct...", false, false, true); 
 		//set booking true to identify the type of the quotation
 
 		return res;
