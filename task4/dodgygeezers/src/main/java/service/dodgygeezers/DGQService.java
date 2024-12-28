@@ -4,6 +4,7 @@ import service.core.AbstractQuotationService;
 import service.core.ClientInfo;
 import service.core.Quotation;
 import service.core.Hotel;
+import java.util.LinkedList;
 
 /**
  * DGQ is BOOKING 
@@ -32,6 +33,8 @@ public class DGQService extends AbstractQuotationService {
 	
 	@Override
 	public Quotation generateQuotation(ClientInfo info) {
+
+		LinkedList<Hotel> listHotels= new LinkedList<>();
 		
 		//manually putting some hotel for simulation
 
@@ -44,7 +47,7 @@ public class DGQService extends AbstractQuotationService {
 	    listHotels.add(h3);
 
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), "booking ecct...", false, false, true); 
+		Quotation res= new Quotation(listHotels, listHotels.peekFirst(), generateReference(PREFIX), "booking ecct...", false, false, true); 
 		//set booking true to identify the type of the quotation
 
 		return res;

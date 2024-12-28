@@ -4,6 +4,7 @@ import service.core.AbstractQuotationService;
 import service.core.ClientInfo;
 import service.core.Quotation;
 import service.core.Hotel;
+import java.util.LinkedList;
 
 /**
  * GA is CANCEL
@@ -32,6 +33,8 @@ public class GAQService extends AbstractQuotationService {
 	@Override
 	public Quotation generateQuotation(ClientInfo info) {
 
+		
+		LinkedList<Hotel> listHotels= new LinkedList<>();
 		//manually putting some hotel for simulation
 
 	    Hotel h1= new Hotel("hotel1","Dublin1",4,100);
@@ -43,7 +46,7 @@ public class GAQService extends AbstractQuotationService {
 	    listHotels.add(h3);
 
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), "cancellation ecct...", true, false, false); 
+		Quotation res= new Quotation(listHotels, listHotels.peekFirst(), generateReference(PREFIX), "cancellation ecct...", true, false, false); 
 		//set cancellation true to identify the type of the quotation
 
 		return res;
