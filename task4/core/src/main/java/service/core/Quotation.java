@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Quotation implements Serializable{
 
 	public Quotation(LinkedList<Hotel> listHotels, Hotel chosenHotel, String reference, boolean cancel, boolean checking, boolean booking) {
-		this.listHotels = listHotels != null ? listHotels : new LinkedList<>();
+		this.listHotels = listHotels != null ? listHotels : new LinkedList<>(); // does it make sense?
 		this.chosenHotel = chosenHotel;
 		this.reference=reference;
 		this.cancel = cancel;
@@ -25,7 +25,7 @@ public class Quotation implements Serializable{
 	
 	public LinkedList<Hotel> listHotels; //it was company
 	public Hotel chosenHotel; 
-	public String reference;  //id of the quotation (AF,DG,GA)
+	public String reference;  //id of the quotation, use generateReference for it
 	public boolean cancel = false;
 	public boolean checking  = false;
 	public boolean boooking = false;

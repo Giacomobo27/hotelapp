@@ -19,7 +19,7 @@ public class Hotel implements Serializable {
     
     @Override
     public String toString() {
-        return "Hotel{name="+name+",address="+address+",rating="+rating+",price="+price+"}";
+        return "Hotel {name="+name+",address="+address+",rating="+rating+",price="+price+"}";
     }
 }
 
