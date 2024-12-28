@@ -10,6 +10,7 @@ import service.core.Application;
 import service.core.ClientInfo;
 import service.core.Quotation;
 import java.util.concurrent.TimeUnit;
+import java.time.LocalDate;
 
 
 
@@ -17,6 +18,31 @@ public class Main {
 	
 	 
 	public static void main(String[] args) throws Exception{
+
+		/*
+		 *  Looped 4ever
+		 * 
+		 * ask wich action to perform ( cancel, checking, booking, finish)
+		 * 
+		 * if checking:
+		 * 
+		 * fetch clientinfo (hotel filter) from terminal
+		 * create clientinfo and send it
+		 * 
+		 * if booking/cancel:
+		 * 
+		 * fetch chosen hotel from terminal 
+		 * fetch bookin-bookout time from terminal
+		 * create clientinfo and send it
+		 * 
+		 * 
+		 * print all results( all list of hotels included too)
+		 * 
+		 * if finish, end loop and application
+		 */
+
+
+
 		 // Create an OkHttpClient instance for sending HTTP requests
 		//OkHttpClient client = new OkHttpClient();
 		OkHttpClient client = new OkHttpClient.Builder()
@@ -64,7 +90,7 @@ public class Main {
 	}
 }
 	
-	
+	//gotta change it
 	public static void displayProfile(ClientInfo info) {
 		System.out.println("|=================================================================================================================|");
 		System.out.println("|                                     |                                     |                                     |");
@@ -80,7 +106,7 @@ public class Main {
 		System.out.println("|=================================================================================================================|");
 	}
 
-	
+	//gotta change it
 	public static void displayQuotation(Quotation quotation) {
 		System.out.println(
 				"| Company: " + String.format("%1$-26s", quotation.company) + 
@@ -91,12 +117,7 @@ public class Main {
 	
 	
 	public static final ClientInfo[] clients = {
-		new ClientInfo("Niki Collier", ClientInfo.FEMALE, 49, 1.5494, 80, false, false),
-		new ClientInfo("Old Geeza", ClientInfo.MALE, 65, 1.6, 100, true, true),
-		new ClientInfo("Hannah Montana", ClientInfo.FEMALE, 21, 1.78, 65, false, false),
-		new ClientInfo("Rem Collier", ClientInfo.MALE, 49, 1.8, 120, false, true),
-		new ClientInfo("Jim Quinn", ClientInfo.MALE, 55, 1.9, 75, true, false),
-		new ClientInfo("Donald Duck", ClientInfo.MALE, 35, 0.45, 1.6, false, false)
+		new ClientInfo("Dublin", 5, 100.00, LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 7));
 	};
 	
 }
