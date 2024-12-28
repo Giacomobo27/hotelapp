@@ -8,7 +8,7 @@ import service.core.Quotation; //serialized
  * Auldfellas is CHECK AVAILABILITY
  * endpoint on 8080/quotations
  * 
- *need to change:
+ *need to do:
  1. connect with database
  2. get list of hotels from db
  3. create Quotation and return 
@@ -37,9 +37,9 @@ public class AFQService extends AbstractQuotationService {
 	    listHotels.add(h3);
 
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), false, true, false); 
+		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), "", false, true, false); 
 		//set checking true to identify the type of the quotation
-		
+
 		return res;
 	}
 }
