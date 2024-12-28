@@ -3,6 +3,8 @@ package service.dodgygeezers;
 import service.core.AbstractQuotationService;
 import service.core.ClientInfo;
 import service.core.Quotation;
+import java.util.LinkedList;
+import service.core.Hotel;
 
 /**
  * DGQ is BOOKING 
@@ -31,19 +33,24 @@ public class DGQService extends AbstractQuotationService {
 	
 	@Override
 	public Quotation generateQuotation(ClientInfo info) {
+		LinkedList<Hotel> listHotels= new LinkedList<>();
 		
 		//manually putting some hotel for simulation
 
-	    Hotel h1= new Hotel("hotel1","Dublin1",4,100);
-	    Hotel h2= new Hotel("hotel2","Dublin2",2,50);
-	    Hotel h3= new Hotel("hotel3","Dublin3",3,70);
+	    Hotel h1= new Hotel("hotel1","Dublin",4,100);
+	    Hotel h2= new Hotel("hotel2","Dublin",2,50);
+	    Hotel h3= new Hotel("hotel3","Dublin",3,70);
 
 	    listHotels.add(h1);
 	    listHotels.add(h2);
 	    listHotels.add(h3);
 
+		// If hotel not found, set chosenHotel to null in the quotation
+		Hotel chosenHotel = listHotels.stream().anyMatch(h -> h.equals(info.chosenHotel)) ? info.chosenHotel : null;
+
+
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listhotels, listhotels.peekFirst(), generateReference(PREFIX), "", false, false, true); 
+		Quotation res= new Quotation(listHotels, chosenHotel, generateReference(PREFIX), "", false, false, true);
 		//set booking true to identify the type of the quotation
 
 		return res;

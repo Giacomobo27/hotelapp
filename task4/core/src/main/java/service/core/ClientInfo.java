@@ -27,7 +27,7 @@ public class ClientInfo implements Serializable {
 
 	public boolean cancel = false;
 	public boolean checking  = false;
-	public boolean boooking = false;
+	public boolean booking = false;
 
     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         // Format the date
