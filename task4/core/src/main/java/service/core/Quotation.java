@@ -1,6 +1,7 @@
 package service.core; 
 //aggiungendo questo, so che devo fare import service.core per importare le cose in questi file
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * Class to store the quotations returned by the quotation services
@@ -30,5 +31,5 @@ public class Quotation implements Serializable{
 	public String news;  //write if booking/cancel is succesfull or not msg to client;
 	public boolean cancel = false;
 	public boolean checking  = false;
-	public boolean boooking = false;
+	public boolean booking = false;
 }
