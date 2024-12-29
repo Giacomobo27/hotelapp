@@ -1,48 +1,123 @@
-<project>
+<!--<project>-->
+<!--    <modelVersion>4.0.0</modelVersion>-->
+
+<!--    <parent>-->
+<!--    <groupId>org.springframework.boot</groupId>-->
+<!--    <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--    <version>2.2.4.RELEASE</version>-->
+<!--    <relativePath/>-->
+<!--    </parent>-->
+
+<!--    <groupId>lifeco-rest</groupId>-->
+<!--    <artifactId>girlsallowed</artifactId>-->
+<!--    <version>0.0.1</version>-->
+<!--    <packaging>jar</packaging>-->
+<!--   &lt;!&ndash;By adding the core module as a dependency in auldfellas's pom.xml, Maven knows that it must build core -->
+<!--   first and then include its classes when compiling auldfellas.&ndash;&gt;-->
+<!--    <dependencies>-->
+<!--    <dependency>-->
+<!--            <groupId>lifeco-rest</groupId>-->
+<!--            <artifactId>core</artifactId>-->
+<!--            <version>0.0.1</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--    <groupId>junit</groupId>-->
+<!--    <artifactId>junit</artifactId>-->
+<!--    <version>4.12</version>-->
+<!--    </dependency>-->
+
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-web</artifactId>-->
+<!--    </dependency>-->
+
+<!--    </dependencies>-->
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--        <plugin>-->
+<!--           <groupId>org.springframework.boot</groupId>-->
+<!--           <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+
+
+<!--</project>-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.4.RELEASE</version>
-    <relativePath/>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.4.RELEASE</version>
+        <relativePath/>
     </parent>
 
     <groupId>lifeco-rest</groupId>
     <artifactId>girlsallowed</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-   <!--By adding the core module as a dependency in auldfellas's pom.xml, Maven knows that it must build core 
-   first and then include its classes when compiling auldfellas.-->
+
+    <!-- Dependencies -->
     <dependencies>
-    <dependency>
+        <!-- Core module dependency -->
+        <dependency>
             <groupId>lifeco-rest</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1</version>
-    </dependency>
+        </dependency>
 
-    <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-    </dependency>
+        <!-- JUnit for unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
+        <!-- Spring Boot Web starter for REST API development -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
+        <!-- Spring Boot Test starter for testing (MockMvc, JUnit support, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.2.4.RELEASE</version> <!-- Matching Spring Boot version -->
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
+    <!-- Build section -->
     <build>
         <plugins>
-        <plugin>
-           <groupId>org.springframework.boot</groupId>
-           <artifactId>spring-boot-maven-plugin</artifactId>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                </configuration>
+            </plugin>
+
         </plugins>
+
+
+
+
+
+
     </build>
-
-
 
 </project>

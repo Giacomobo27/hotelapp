@@ -3,6 +3,7 @@ package service.girlsallowed;
 import service.core.AbstractQuotationService;
 import service.core.ClientInfo;
 import service.core.Quotation;
+import java.util.LinkedList;
 import service.core.Hotel;
 import java.util.LinkedList;
 
@@ -32,6 +33,7 @@ public class GAQService extends AbstractQuotationService {
 	
 	@Override
 	public Quotation generateQuotation(ClientInfo info) {
+		LinkedList<Hotel> listHotels= new LinkedList<>();
 
 		
 		LinkedList<Hotel> listHotels= new LinkedList<>();
@@ -45,8 +47,11 @@ public class GAQService extends AbstractQuotationService {
 	    listHotels.add(h2);
 	    listHotels.add(h3);
 
+		// If hotel not found, set chosenHotel to null in the quotation
+		Hotel chosenHotel = listHotels.stream().anyMatch(h -> h.equals(info.chosenHotel)) ? info.chosenHotel : null;
+
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listHotels, listHotels.peekFirst(), generateReference(PREFIX), "cancellation ecct...", true, false, false); 
+		Quotation res= new Quotation(listHotels, chosenHotel, generateReference(PREFIX), "cancellation ecct...", true, false, false);
 		//set cancellation true to identify the type of the quotation
 
 		return res;
