@@ -14,35 +14,24 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
+		/*
+		 *  Looped 4ever
+		 * ask wich action to perform ( cancel, checking, booking, finish)
+		 * if checking:...
+		 * if booking/cancel:...
+		 * create clientinfo and send it
+		 * print all results( all list of hotels included too)
+		 * if finish, end loop and application
+		 */
+
+
 public class Main {
 	
 	 
 	public static void main(String[] args) throws Exception{
+		boolean finished = false;
 
 		System.out.println(" WELCOME");
-
-
-		/*
-		 *  Looped 4ever
-		 * 
-		 * ask wich action to perform ( cancel, checking, booking, finish)
-		 * 
-		 * if checking:
-		 * 
-		 * fetch clientinfo (hotel filter) from terminal
-		 * create clientinfo and send it
-		 * 
-		 * if booking/cancel:
-		 * 
-		 * fetch chosen hotel from terminal 
-		 * fetch bookin-bookout time from terminal
-		 * create clientinfo and send it
-		 * 
-		 * 
-		 * print all results( all list of hotels included too)
-		 * 
-		 * if finish, end loop and application
-		 */
 
 		 // Create an OkHttpClient instance for sending HTTP requests
 		//OkHttpClient client = new OkHttpClient();
@@ -52,7 +41,7 @@ public class Main {
 			Scanner scanner = new Scanner(System.in);
 
 		try{
-		 while(true) { // change to while true 
+		 while(!finished) { // change to while true 
 
 			// ask which action to perform ( cancel, checking, booking, finish)
 			
@@ -88,12 +77,16 @@ public class Main {
 			}
 
 			else if(input.equals("4")) { // end things
+				System.out.println("Operation Finished, thank you!");
+				finished = true;
 				break;
 			}
 			else{
 				System.out.println("input invalid, retry");
 			}
 		}
+
+		if(finished) break;
 
 			 // Create an ObjectMapper instance to handle JSON serialization
             ObjectMapper objectmapper = new ObjectMapper();
@@ -124,18 +117,20 @@ public class Main {
 
 			System.out.println("continue? (Y/N)");
 			String input= scanner.nextLine();
-
 			if(input.equals("Y")){
-				//keep up
+				System.out.println("Loading...");
 				continue;
 			}
 			else if(input.equals("N")){
-				//finish
+				System.out.println("Operation Finished, thank you!");
+				finished = true;
 				break;
 			}
 			else{
 				System.out.println("Error Input");
 			}
+
+
         }
 	} finally { 
 		 client.connectionPool().evictAll(); // Clear the connection pool
@@ -173,7 +168,7 @@ public class Main {
 	
 	//for testing
 	public static final ClientInfo[] clients = {
-		new ClientInfo("Dublin", 5, 100.00, LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 7));
+		new ClientInfo("Dublin", 5, 100.00, LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 7), false, false, false);
 	};
 	
 }
