@@ -13,10 +13,29 @@ public class ClientInfo implements Serializable {
 		this.budget = budget;
 		this.bookin = bookin;
 		this.bookout = bookout;
+
 		this.cancel = cancel;
 		this.checking = checking;
-		this.booking = booking;
-	}
+		this.booking = booking; 
+		this.chosenHotel=null;
+	} //for checking
+
+
+	public ClientInfo(Hotel chosenHotel, LocalDate bookin, LocalDate bookout, boolean cancel, boolean checking, boolean booking) {
+		this.location = ""; 
+		this.stars = 0;
+		this.budget = 0;
+		this.bookin = bookin;
+		this.bookout = bookout;
+
+		this.cancel = cancel;
+		this.checking = checking;
+		this.booking = booking; 
+		this.chosenHotel=chosenHotel;
+	} // for booking, cancelling
+
+
+
 	
 	public ClientInfo() {}
 

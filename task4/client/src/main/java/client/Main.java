@@ -9,6 +9,7 @@ import okhttp3.*;
 import service.core.Application;
 import service.core.ClientInfo;
 import service.core.Quotation;
+import service.core.Hotel;
 import java.util.concurrent.TimeUnit;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -41,13 +42,14 @@ public class Main {
 			Scanner scanner = new Scanner(System.in);
 
 		try{
-		 while(!finished) { // change to while true 
+		 while(!finished) { 
 
 			// ask which action to perform ( cancel, checking, booking, finish)
 			
 			ClientInfo info;
 
             while(true){
+
             System.out.println("Which action you want to perform?");
 			System.out.println("1. Search new hotels");
 			System.out.println("2. Booking chosen hotel");
@@ -56,27 +58,95 @@ public class Main {
 			
 			String input= scanner.nextLine();
 
-			if(input.equals("1")) {  // call method that create clientinfo
-				//fetch clientinfo (hotel filter) from terminal
-				//create clientinfo and send it
+			if(input.equals("1")) {   //search (checking)
+
+				System.out.println("Location?");
+				String location= scanner.nextLine();
+				System.out.println("Star rating?");
+				String in2= scanner.nextLine();
+				System.out.println("Budget per night?");
+				String in3= scanner.nextLine();
+				System.out.println("Book in data? (YYYY-MM-DD)");
+				String in4= scanner.nextLine();
+				System.out.println("Book out data? (YYYY-MM-DD)");
+				String in5= scanner.nextLine();
+
+				int rating=Integer.parseInt(in2);
+				double budget=Double.parseDouble(in3);
+
+				LocalDate bookin=LocalDate.parse(in4);
+				LocalDate bookout=LocalDate.parse(in5);
+
+				info = new ClientInfo(location,rating,budget,bookin,bookout,false,true,false);
+
+				System.out.println("Info collected");
 				break;
 			}
 
-			else if(input.equals("2")) { // call method that create clientinfo
-				//fetch chosen hotel from terminal 
-		     //fetch bookin-bookout time from terminal
-		     //create clientinfo and send it
+			else if(input.equals("2")) { //Booking
+
+			    System.out.println("Hotel name?");
+			    String in1= scanner.nextLine();
+				System.out.println("Hotel address?");
+			    String in2= scanner.nextLine();
+				System.out.println("Hotel rating?");
+			    String in3= scanner.nextLine();
+				System.out.println("Hotel price?");
+			    String in4= scanner.nextLine();
+
+				int stars=Integer.parseInt(in3);
+				double price=Double.parseDouble(in4);
+
+				Hotel hotelbook = new Hotel(in1,in2,stars,price);
+				System.out.println(hotelbook);
+
+
+				System.out.println("Book in data? (YYYY-MM-DD)");
+				String in5= scanner.nextLine();
+				System.out.println("Book out data? (YYYY-MM-DD)");
+				String in6= scanner.nextLine();
+				LocalDate bookin=LocalDate.parse(in5);
+				LocalDate bookout=LocalDate.parse(in6);
+
+				info = new ClientInfo(hotelbook,bookin,bookout,false,false,true);
+
+				System.out.println("Info collected");
 				break; 
 			}
 
-			else if(input.equals("3")) { // call method that create clientinfo 
-				//fetch chosen hotel from terminal 
-		     //fetch bookin-bookout time from terminal
-		     //create clientinfo and send it
+			else if(input.equals("3")) {  //cancel
+				
+			    System.out.println("Hotel name?");
+			    String in1= scanner.nextLine();
+				System.out.println("Hotel address?");
+			    String in2= scanner.nextLine();
+				System.out.println("Hotel rating?");
+			    String in3= scanner.nextLine();
+				System.out.println("Hotel price?");
+			    String in4= scanner.nextLine();
+
+				int stars=Integer.parseInt(in3);
+				double price=Double.parseDouble(in4);
+
+				Hotel hotelbook = new Hotel(in1,in2,stars,price);
+				System.out.println(hotelbook);
+
+
+				System.out.println("Book in data? (YYYY-MM-DD)");
+				String in5= scanner.nextLine();
+				System.out.println("Book out data? (YYYY-MM-DD)");
+				String in6= scanner.nextLine();
+				LocalDate bookin=LocalDate.parse(in5);
+				LocalDate bookout=LocalDate.parse(in6);
+
+				info = new ClientInfo(hotelbook,bookin,bookout,true,false,false);
+
+				System.out.println("Info collected");
+				
 				break;
 			}
 
-			else if(input.equals("4")) { // end things
+			else if(input.equals("4")) { 
 				System.out.println("Operation Finished, thank you!");
 				finished = true;
 				break;
@@ -129,7 +199,6 @@ public class Main {
 			else{
 				System.out.println("Error Input");
 			}
-
 
         }
 	} finally { 
