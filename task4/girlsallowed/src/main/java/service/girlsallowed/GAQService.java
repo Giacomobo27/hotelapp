@@ -36,12 +36,12 @@ public class GAQService extends AbstractQuotationService {
 		LinkedList<Hotel> listHotels= new LinkedList<>();
 
 		
-		LinkedList<Hotel> listHotels= new LinkedList<>();
+//		LinkedList<Hotel> listHotels= new LinkedList<>();
 		//manually putting some hotel for simulation
 
-	    Hotel h1= new Hotel("hotel1","Dublin1",4,100);
-	    Hotel h2= new Hotel("hotel2","Dublin2",2,50);
-	    Hotel h3= new Hotel("hotel3","Dublin3",3,70);
+	    Hotel h1= new Hotel("hotel1","Dublin1",4,100.00);
+	    Hotel h2= new Hotel("hotel2","Dublin2",2,50.00);
+	    Hotel h3= new Hotel("hotel3","Dublin3",3,70.00);
 
 	    listHotels.add(h1);
 	    listHotels.add(h2);

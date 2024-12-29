@@ -21,7 +21,10 @@ public class GirlsallowedUnitTest {
                 5,                 // stars
                 100.00,            // budget
                 LocalDate.of(2025, 1, 1), // booking in date
-                LocalDate.of(2025, 1, 7)  // booking out date
+                LocalDate.of(2025, 1, 7),  // booking out date
+                true,
+                false,
+                false
         );
 
         // Set the chosen hotel for cancellation (same hotel)
