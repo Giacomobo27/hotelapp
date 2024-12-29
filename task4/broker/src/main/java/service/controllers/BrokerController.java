@@ -67,7 +67,7 @@ private Map<Integer, Application> applications = new HashMap<>();   //store all 
     public ResponseEntity<Application> createApplication(@RequestBody ClientInfo info) {
         Application application = new Application(info);  // Create a new Application object for the client
 
-        // Loop through the list of quotation service URLs
+        // filter where to send the clientinfo and get the quotation back
         String serviceUrl; 
         if(info.cancel == true) serviceUrl = "http://localhost:8081/quotations";
         if(info.checking == true) serviceUrl = "http://localhost:8080/quotations";
