@@ -7,12 +7,15 @@ import java.time.format.DateTimeFormatter;
  */
 public class ClientInfo implements Serializable {
 	
-	public ClientInfo(String location, int stars, double budget, LocalDate bookin, LocalDate bookout) {
+	public ClientInfo(String location, int stars, double budget, LocalDate bookin, LocalDate bookout, boolean cancel, boolean checking, boolean booking) {
 		this.location = location; 
 		this.stars = stars;
 		this.budget = budget;
 		this.bookin = bookin;
 		this.bookout = bookout;
+		this.cancel = cancel;
+		this.checking = checking;
+		this.booking = booking;
 	}
 	
 	public ClientInfo() {}
