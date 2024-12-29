@@ -31,9 +31,9 @@ public class AFQService extends AbstractQuotationService {
        
 	   //manually putting some hotel for simulation
 
-	    Hotel h1= new Hotel("hotel1","Dublin",5,100);
-	    Hotel h2= new Hotel("hotel2","Dublin",5,50);
-	    Hotel h3= new Hotel("hotel3","Dublin",5,70);
+	    Hotel h1= new Hotel("hotel1","Dublin",5,100.00);
+	    Hotel h2= new Hotel("hotel2","Dublin",5,50.00);
+	    Hotel h3= new Hotel("hotel3","Dublin",5,70.00);
 
 	    listHotels.add(h1);
 	    listHotels.add(h2);

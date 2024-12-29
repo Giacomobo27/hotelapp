@@ -18,7 +18,10 @@ public class DodgygeezersUnitTest1{
                 5,                 // stars
                 100.00,            // budget
                 LocalDate.of(2025, 1, 1), // bookin
-                LocalDate.of(2025, 1, 7)  // bookout
+                LocalDate.of(2025, 1, 7),  // bookout
+                false,
+                false,
+                true
         );
 
         Hotel chosenHotel = new Hotel("hotel2", "Dublin", 2, 50);

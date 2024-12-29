@@ -17,7 +17,8 @@ public class AuldfellasUnitTest {
                 5,                 // stars
                 100.00,            // budget
                 LocalDate.of(2025, 1, 1), // bookin
-                LocalDate.of(2025, 1, 7)  // bookout
+                LocalDate.of(2025, 1, 7),  // bookout
+                false, true, false
         );
         RestTemplate template = new RestTemplate();
         ResponseEntity<Quotation> response = template.postForEntity(baseURL, info, Quotation.class);

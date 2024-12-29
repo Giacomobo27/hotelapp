@@ -31,8 +31,9 @@ public class BrokerController {
 
     
  @Value("${server.port}")   //Retrieves the application's server port from the configuration file
- private int port; 
- 
+ private int port;
+
+
  private String getHost() { //Determines the host address and port of the server
   try {
   return InetAddress.getLocalHost().getHostAddress() + ":" + port;
@@ -68,7 +69,7 @@ private Map<Integer, Application> applications = new HashMap<>();   //store all 
         Application application = new Application(info);  // Create a new Application object for the client
 
         // filter where to send the clientinfo and get the quotation back
-        String serviceUrl; 
+        String serviceUrl = null;
         if(info.cancel == true) serviceUrl = "http://localhost:8081/quotations";
         if(info.checking == true) serviceUrl = "http://localhost:8080/quotations";
         if(info.booking == true) serviceUrl = "http://localhost:8082/quotations";
