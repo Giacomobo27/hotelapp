@@ -10,28 +10,95 @@ import service.core.Application;
 import service.core.ClientInfo;
 import service.core.Quotation;
 import java.util.concurrent.TimeUnit;
-
+import java.time.LocalDate;
+import java.util.Scanner;
 
 
 public class Main {
 	
 	 
 	public static void main(String[] args) throws Exception{
+
+		System.out.println(" WELCOME");
+
+
+		/*
+		 *  Looped 4ever
+		 * 
+		 * ask wich action to perform ( cancel, checking, booking, finish)
+		 * 
+		 * if checking:
+		 * 
+		 * fetch clientinfo (hotel filter) from terminal
+		 * create clientinfo and send it
+		 * 
+		 * if booking/cancel:
+		 * 
+		 * fetch chosen hotel from terminal 
+		 * fetch bookin-bookout time from terminal
+		 * create clientinfo and send it
+		 * 
+		 * 
+		 * print all results( all list of hotels included too)
+		 * 
+		 * if finish, end loop and application
+		 */
+
 		 // Create an OkHttpClient instance for sending HTTP requests
 		//OkHttpClient client = new OkHttpClient();
 		OkHttpClient client = new OkHttpClient.Builder()
             .connectionPool(new ConnectionPool(0, 1, TimeUnit.MILLISECONDS)) // Close idle connections quickly
             .build();
-		try{
+			Scanner scanner = new Scanner(System.in);
 
-		 for (ClientInfo info : clients) {
+		try{
+		 while(true) { // change to while true 
+
+			// ask which action to perform ( cancel, checking, booking, finish)
+			
+			ClientInfo info;
+
+            while(true){
+            System.out.println("Which action you want to perform?");
+			System.out.println("1. Search new hotels");
+			System.out.println("2. Booking chosen hotel");
+			System.out.println("3. Cancel chosen hotel");
+			System.out.println("4. finish");
+			
+			String input= scanner.nextLine();
+
+			if(input.equals("1")) {  // call method that create clientinfo
+				//fetch clientinfo (hotel filter) from terminal
+				//create clientinfo and send it
+				break;
+			}
+
+			else if(input.equals("2")) { // call method that create clientinfo
+				//fetch chosen hotel from terminal 
+		     //fetch bookin-bookout time from terminal
+		     //create clientinfo and send it
+				break; 
+			}
+
+			else if(input.equals("3")) { // call method that create clientinfo 
+				//fetch chosen hotel from terminal 
+		     //fetch bookin-bookout time from terminal
+		     //create clientinfo and send it
+				break;
+			}
+
+			else if(input.equals("4")) { // end things
+				break;
+			}
+			else{
+				System.out.println("input invalid, retry");
+			}
+		}
+
 			 // Create an ObjectMapper instance to handle JSON serialization
             ObjectMapper objectmapper = new ObjectMapper();
-
             // Serialize the `ClientInfo` object into a JSON string
             String s = objectmapper.writeValueAsString(info);
-
-           
           //  OkHttpClient client = new OkHttpClient();
             RequestBody body = RequestBody.create(s, MediaType.parse("application/json"));
 // Build the HTTP POST request to send the client info to the broker service
@@ -54,17 +121,32 @@ public class Main {
             }
 
             System.out.println("\n");
+
+			System.out.println("continue? (Y/N)");
+			String input= scanner.nextLine();
+
+			if(input.equals("Y")){
+				//keep up
+				continue;
+			}
+			else if(input.equals("N")){
+				//finish
+				break;
+			}
+			else{
+				System.out.println("Error Input");
+			}
         }
 	} finally { 
 		 client.connectionPool().evictAll(); // Clear the connection pool
             if (client.dispatcher().executorService() != null) {
                 client.dispatcher().executorService().shutdownNow(); // Shut down dispatcher threads
             }
-
+		scanner.close();
 	}
 }
 	
-	
+	//gotta change it
 	public static void displayProfile(ClientInfo info) {
 		System.out.println("|=================================================================================================================|");
 		System.out.println("|                                     |                                     |                                     |");
@@ -80,7 +162,7 @@ public class Main {
 		System.out.println("|=================================================================================================================|");
 	}
 
-	
+	//gotta change it
 	public static void displayQuotation(Quotation quotation) {
 		System.out.println(
 				"| Company: " + String.format("%1$-26s", quotation.company) + 
@@ -89,14 +171,9 @@ public class Main {
 		System.out.println("|=================================================================================================================|");
 	}
 	
-	
+	//for testing
 	public static final ClientInfo[] clients = {
-		new ClientInfo("Niki Collier", ClientInfo.FEMALE, 49, 1.5494, 80, false, false),
-		new ClientInfo("Old Geeza", ClientInfo.MALE, 65, 1.6, 100, true, true),
-		new ClientInfo("Hannah Montana", ClientInfo.FEMALE, 21, 1.78, 65, false, false),
-		new ClientInfo("Rem Collier", ClientInfo.MALE, 49, 1.8, 120, false, true),
-		new ClientInfo("Jim Quinn", ClientInfo.MALE, 55, 1.9, 75, true, false),
-		new ClientInfo("Donald Duck", ClientInfo.MALE, 35, 0.45, 1.6, false, false)
+		new ClientInfo("Dublin", 5, 100.00, LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 7));
 	};
 	
 }

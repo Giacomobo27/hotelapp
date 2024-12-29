@@ -51,9 +51,9 @@ private Map<Integer, Application> applications = new HashMap<>();   //store all 
 
     // List of URLs for quotation services
     private static final String[] SERVICES = {
-        "http://localhost:8080/quotations", //auld
-        "http://localhost:8081/quotations", //girls
-        "http://localhost:8082/quotations" //dodgy
+        "http://localhost:8080/quotations", //auld checking
+        "http://localhost:8081/quotations", //girls cancel
+        "http://localhost:8082/quotations" //dodgy booking
     };
 
     /**
@@ -67,10 +67,14 @@ private Map<Integer, Application> applications = new HashMap<>();   //store all 
     public ResponseEntity<Application> createApplication(@RequestBody ClientInfo info) {
         Application application = new Application(info);  // Create a new Application object for the client
 
-        // Loop through the list of quotation service URLs
-        for (String serviceUrl : SERVICES) {
-            try {
+        // filter where to send the clientinfo and get the quotation back
+        String serviceUrl; 
+        if(info.cancel == true) serviceUrl = "http://localhost:8081/quotations";
+        if(info.checking == true) serviceUrl = "http://localhost:8080/quotations";
+        if(info.booking == true) serviceUrl = "http://localhost:8082/quotations";
+         
 
+            try {
                 // Send a POST request to the current quotation service with the ClientInfo object
                 ResponseEntity<Quotation> response = restTemplate.postForEntity(serviceUrl, info, Quotation.class);  //send POST request to QS url, expect quotation in return
                 if (response.getStatusCode().equals(HttpStatus.CREATED)) { // if response is positive
@@ -79,9 +83,9 @@ private Map<Integer, Application> applications = new HashMap<>();   //store all 
             } catch (Exception e) {
                 System.out.println("Failed to contact service: " + serviceUrl);
             }
-        }
+        
 
-        // Store the newly created application in the in-memory map
+        // Store the new application in the hashmap
         applications.put(application.id, application);
         return ResponseEntity.status(HttpStatus.CREATED).body(application);
     }
