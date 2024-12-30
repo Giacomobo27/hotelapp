@@ -199,8 +199,8 @@ public class Main {
 			else{
 				System.out.println("Error Input");
 			}
-
         }
+
 	} finally { 
 		 client.connectionPool().evictAll(); // Clear the connection pool
             if (client.dispatcher().executorService() != null) {
@@ -212,27 +212,70 @@ public class Main {
 	
 	//gotta change it
 	public static void displayProfile(ClientInfo info) {
+		String typemsg;
+		if(info.checking) typemsg = "Search";
+		if(info.cancel) typemsg = "Cancellation";
+		if(into.booking) typemsg = "Booking";
+
 		System.out.println("|=================================================================================================================|");
+		System.out.println("| "+ typemsg+" request");
 		System.out.println("|                                     |                                     |                                     |");
-		System.out.println(
-				"| Name: " + String.format("%1$-29s", info.name) + 
-				" | Gender: " + String.format("%1$-27s", (info.gender==ClientInfo.MALE?"Male":"Female")) +
-				" | Age: " + String.format("%1$-30s", info.age)+" |");
-		System.out.println(
-				"| Weight/Height: " + String.format("%1$-20s", info.weight+"kg/"+info.height+"m") + 
-				" | Smoker: " + String.format("%1$-27s", info.smoker?"YES":"NO") +
-				" | Medical Problems: " + String.format("%1$-17s", info.medicalIssues?"YES":"NO")+" |");
-		System.out.println("|                                     |                                     |                                     |");
-		System.out.println("|=================================================================================================================|");
+		if(info.checking){
+
+			System.out.println(
+				"| Location: " + String.format("%1$-29s", info.location) + 
+				" | Rating: " + String.format("%1$-23s", String.valueOf(info.stars) ) +
+				" | Budget: " + String.format("%1$-27s", String.valueOf(info.budget))+" |");
+		    System.out.println(
+				"| Book-in date: " + String.format("%1$-37s", info.bookin.toString()) + 
+				" | Book-out date: " + String.format("%1$-40s", info.bookout.toString()) +" |");
+		    System.out.println("|                                     |                                     |                                     |");
+	        System.out.println("|=================================================================================================================|");
+		
+		}
+		else{
+
+		    System.out.println(
+				"| Hotel Name: " + String.format("%1$-29s", info.chosenHotel.name) + 
+				" | Address: " + String.format("%1$-27s", info.chosenHotel.address) +
+				" | rating: " + String.format("%1$-30s", String.valueOf(info.chosenHotel.rating))+" |");
+		    System.out.println(
+				"| price: " + String.format("%1$-20s", String.valueOf(info.chosenHotel.price)) + 
+				" | Book-in date: " + String.format("%1$-27s", info.bookin.toString()) +
+				" | Book-out date: " + String.format("%1$-17s", info.bookout.toString())+" |");
+		    System.out.println("|                                     |                                     |                                     |");
+		    System.out.println("|=================================================================================================================|");
+		
+		}
 	}
 
 	//gotta change it
 	public static void displayQuotation(Quotation quotation) {
+
+		if(quotation.checking){
+			//print list of hotels
+			for(Hotel h : quotation.listHotels){
+
 		System.out.println(
-				"| Company: " + String.format("%1$-26s", quotation.company) + 
-				" | Reference: " + String.format("%1$-24s", quotation.reference) +
-				" | Price: " + String.format("%1$-28s", NumberFormat.getCurrencyInstance().format(quotation.price))+" |");
+				"| Hotel Name: " + String.format("%1$-26s", h.name) + 
+				" | Rating: " + String.format("%1$-24s", String.valueOf(h.rating)) +
+				" | Price: " + String.format("%1$-28s", String.valueOf(h.price))+" |");
+		System.out.println("|=================================================================================================================|"); 
+			}
+
+			System.out.println(
+				"| output: " + String.format("%1$-36s", quotation.news) + 
+				" | Reference: " + String.format("%1$-34s", quotation.reference) +" |");
 		System.out.println("|=================================================================================================================|");
+			}
+
+		else{ //booking or cancellation 
+			System.out.println(
+				"| output: " + String.format("%1$-36s", quotation.news) + 
+				" | Reference: " + String.format("%1$-34s", quotation.reference) +" |");
+		System.out.println("|=================================================================================================================|");
+		
+		}
 	}
 	
 	//for testing
