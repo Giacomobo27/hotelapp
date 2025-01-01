@@ -1,0 +1,20 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>hotelapp-rest</groupId>
+    <artifactId>task</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>core</module>
+        <module>checking</module>
+        <module>dodgygeezers</module>
+        <module>girlsallowed</module>
+        <module>broker</module>
+        <module>client</module>
+    </modules>
+
+
+
+
+</project>
