@@ -1,39 +1,28 @@
-task1 
-go inside core project and
+
+go inside core 
 mvn clean install
 
-task2
-in core project
-mvn clean install 
-in auldfellas project
+for each microservice ( checking, booking, cancel) in a separate terminal
 mvn clean install
-mvn mvn spring-boot:run
+(mvn clean install -DskipTests) if u want to skip the tests
+mvn spring-boot:run
 
-MUST follow these steps to not get error supertype
+same for broker in a different terminal
 
-task3
-do the same for dodgygeezers and girlsalloed but each in a different terminal
+for running broker test 
+ mvn test -Dtest=BrokerUnitTest
+
 
 check result in
 localhost:8080/quotations
 localhost:8081/quotations
 localhost:8082/quotations
 
-task4
-in core
-mvn clean install
-then
-
-i run every Quotation service and broker in a different terminal,
- then in a new terminal
-in the core,
-mvn clean install 
-in the client
-mvn clean install
-mvn exec:java
-
-
 broker in localhost:8083/applications
 
+
+in a new terminal for the client
+mvn clean install
+mvn exec:java
 
 if something doesnt work, try clean install core first
