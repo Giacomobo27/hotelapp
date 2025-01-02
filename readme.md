@@ -97,7 +97,9 @@ Run the client:
  Quotations Services:
 
 http://localhost:8080/quotations
+
 http://localhost:8081/quotations
+
 http://localhost:8082/quotations
 
 Broker Service:
