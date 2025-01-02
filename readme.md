@@ -32,7 +32,9 @@ Each microservice (checking, booking, and cancel) must be started in its own ter
 Open a terminal and navigate to the respective microservice directory:
 
 checking
+
 booking
+
 cancel
 
 Build the microservice:
