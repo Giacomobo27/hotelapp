@@ -1,2 +1,3 @@
+service/booking/BOOKService.class
 service/Application.class
 service/controllers/QuotationController.class

@@ -44,6 +44,12 @@
         <version>2.2.4.RELEASE</version> <!-- Matching Spring Boot version -->
         <scope>test</scope>
     </dependency>
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>2.3.1</version> <!-- Use the latest version -->
+        </dependency>
+
 
 
 

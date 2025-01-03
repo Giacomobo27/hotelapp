@@ -51,7 +51,8 @@ public class CHECKService extends MicroService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+        System.out.println(listHotels.size());
+		System.out.println(listHotels);
 		// Generate the quotation and send it back
 		Quotation res = new Quotation(listHotels, listHotels.peekFirst(), generateReference(PREFIX), "", false, true, false);
 		//set checking true to identify the type of the quotation
