@@ -45,7 +45,7 @@ mvn clean install
 If you want to skip the tests:
 
 ```bash
-mvn clean install -Dskip
+mvn clean install -DskipTests
  ```
 Run the microservice:
 
