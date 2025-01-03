@@ -8,54 +8,48 @@ import service.core.Hotel;
 import java.sql.*;
 import java.util.LinkedList;
 
-/**
- * Auldfellas is CHECK AVAILABILITY
- * endpoint on 8080/quotations
- *
- *need to do:
- 1. connect with database
- 2.analize Clientinfo request
- 3. get list of hotels from DB
- 4. create Quotation and return
- */
-
-//do not change class names of prefix for the momennt!
+// Do not change class names or prefixes for the moment!
 public class CHECKService extends MicroService {
 
 	public static final String PREFIX = "CH";
 
 	@Override
-	public Quotation generateQuotation(ClientInfo info) {  // should be fetching data from DB
+	public Quotation generateQuotation(ClientInfo info) { // Should fetch data from DB
 
 		LinkedList<Hotel> listHotels = new LinkedList<>();
 
 		try (Connection connection = DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/hotelapp", "root", "Hotelapp25@")) {
 
-			// Fetch all hotels from the database
-			String fetchHotelsQuery = "SELECT * FROM hotels";
-			try (Statement statement = connection.createStatement();
-				 ResultSet resultSet = statement.executeQuery(fetchHotelsQuery)) {
+			// Prepare query to fetch hotels based on location and rating
+			String fetchHotelsQuery = "SELECT * FROM hotels WHERE location = ? AND rating >= ? and price <= ?";
+			try (PreparedStatement preparedStatement = connection.prepareStatement(fetchHotelsQuery)) {
+				preparedStatement.setString(1, info.location); // Set the location from ClientInfo
+				preparedStatement.setInt(2, info.stars);// Set the minimum rating from ClientInfo
+				preparedStatement.setDouble(3,info.budget);
 
-				while (resultSet.next()) {
-					String name = resultSet.getString("name");
-					String location = resultSet.getString("location");
-					int rating = resultSet.getInt("rating");
-					double price = resultSet.getDouble("price");
+				try (ResultSet resultSet = preparedStatement.executeQuery()) {
+					while (resultSet.next()) {
+						String name = resultSet.getString("name");
+						String location = resultSet.getString("location");
+						int rating = resultSet.getInt("rating");
+						double price = resultSet.getDouble("price");
 
-					Hotel hotel = new Hotel(name, location, rating, price);
-					listHotels.add(hotel);
+						Hotel hotel = new Hotel(name, location, rating, price);
+						listHotels.add(hotel);
+					}
 				}
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-        System.out.println(listHotels.size());
-		System.out.println(listHotels);
+
+
+
 		// Generate the quotation and send it back
 		Quotation res = new Quotation(listHotels, listHotels.peekFirst(), generateReference(PREFIX), "", false, true, false);
-		//set checking true to identify the type of the quotation
+		// Set checking true to identify the type of the quotation
 
 		return res;
 	}

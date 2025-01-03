@@ -16,31 +16,31 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
-		/*
-		 *  Looped 4ever
-		 * ask wich action to perform ( cancel, checking, booking, finish)
-		 * if checking:...
-		 * if booking/cancel:...
-		 * create clientinfo and send it
-		 * print all results( all list of hotels included too)
-		 * if finish, end loop and application
-		 */
+/*
+ *  Looped 4ever
+ * ask wich action to perform ( cancel, checking, booking, finish)
+ * if checking:...
+ * if booking/cancel:...
+ * create clientinfo and send it
+ * print all results( all list of hotels included too)
+ * if finish, end loop and application
+ */
 
 
 public class Main {
-	
-	 
+
+
 	public static void main(String[] args) throws Exception{
 		boolean finished = false;
 
 		System.out.println(" WELCOME");
 
-		 // Create an OkHttpClient instance for sending HTTP requests
+		// Create an OkHttpClient instance for sending HTTP requests
 		//OkHttpClient client = new OkHttpClient();
 		OkHttpClient client = new OkHttpClient.Builder()
-            .connectionPool(new ConnectionPool(0, 1, TimeUnit.MILLISECONDS)) // Close idle connections quickly
-            .build();
-			Scanner scanner = new Scanner(System.in);
+				.connectionPool(new ConnectionPool(0, 1, TimeUnit.MILLISECONDS)) // Close idle connections quickly
+				.build();
+		Scanner scanner = new Scanner(System.in);
 
 		try {
 			while (!finished) {
@@ -196,18 +196,18 @@ public class Main {
 				}
 				if (finished) break;
 			}
-		
-	} finally {
-		 client.connectionPool().evictAll(); // Clear the connection pool
-            if (client.dispatcher().executorService() != null) {
-                client.dispatcher().executorService().shutdownNow(); // Shut down dispatcher threads
-            }
-		scanner.close();
+
+		} finally {
+			client.connectionPool().evictAll(); // Clear the connection pool
+			if (client.dispatcher().executorService() != null) {
+				client.dispatcher().executorService().shutdownNow(); // Shut down dispatcher threads
+			}
+			scanner.close();
+		}
+
+
 	}
 
-
-}
-	
 	//gotta change it
 	public static void displayProfile(ClientInfo info) {
 		String typemsg = "Unknown";
@@ -221,29 +221,29 @@ public class Main {
 		if(info.checking){
 
 			System.out.println(
-				"| Location: " + String.format("%1$-29s", info.location) + 
-				" | Rating: " + String.format("%1$-23s", String.valueOf(info.stars) ) +
-				" | Budget: " + String.format("%1$-27s", String.valueOf(info.budget))+" |");
-		    System.out.println(
-				"| Book-in date: " + String.format("%1$-37s", info.bookin.toString()) + 
-				" | Book-out date: " + String.format("%1$-40s", info.bookout.toString()) +" |");
-		    System.out.println("|                                     |                                     |                                     |");
-	        System.out.println("|=================================================================================================================|");
-		
+					"| Location: " + String.format("%1$-29s", info.location) +
+							" | Rating: " + String.format("%1$-23s", String.valueOf(info.stars) ) +
+							" | Budget: " + String.format("%1$-27s", String.valueOf(info.budget))+" |");
+			System.out.println(
+					"| Book-in date: " + String.format("%1$-37s", info.bookin.toString()) +
+							" | Book-out date: " + String.format("%1$-40s", info.bookout.toString()) +" |");
+			System.out.println("|                                     |                                     |                                     |");
+			System.out.println("|=================================================================================================================|");
+
 		}
 		else{
 
-		    System.out.println(
-				"| Hotel Name: " + String.format("%1$-29s", info.chosenHotel.name) + 
-				" | Address: " + String.format("%1$-27s", info.chosenHotel.address) +
-				" | rating: " + String.format("%1$-30s", String.valueOf(info.chosenHotel.rating))+" |");
-		    System.out.println(
-				"| price: " + String.format("%1$-20s", String.valueOf(info.chosenHotel.price)) + 
-				" | Book-in date: " + String.format("%1$-27s", info.bookin.toString()) +
-				" | Book-out date: " + String.format("%1$-17s", info.bookout.toString())+" |");
-		    System.out.println("|                                     |                                     |                                     |");
-		    System.out.println("|=================================================================================================================|");
-		
+			System.out.println(
+					"| Hotel Name: " + String.format("%1$-29s", info.chosenHotel.name) +
+							" | Address: " + String.format("%1$-27s", info.chosenHotel.address) +
+							" | rating: " + String.format("%1$-30s", String.valueOf(info.chosenHotel.rating))+" |");
+			System.out.println(
+					"| price per night: " + String.format("%1$-20s", String.valueOf(info.chosenHotel.price)) +
+							" | Book-in date: " + String.format("%1$-27s", info.bookin.toString()) +
+							" | Book-out date: " + String.format("%1$-17s", info.bookout.toString())+" |");
+			System.out.println("|                                     |                                     |                                     |");
+			System.out.println("|=================================================================================================================|");
+
 		}
 	}
 
@@ -254,31 +254,32 @@ public class Main {
 			//print list of hotels
 			for(Hotel h : quotation.listHotels){
 
-		System.out.println(
-				"| Hotel Name: " + String.format("%1$-26s", h.name) + 
-				" | Rating: " + String.format("%1$-24s", String.valueOf(h.rating)) +
-				" | Price: " + String.format("%1$-28s", String.valueOf(h.price))+" |");
-		System.out.println("|=================================================================================================================|"); 
+				System.out.println(
+						"| Hotel Name: " + String.format("%1$-26s", h.name) +
+								" | Rating: " + String.format("%1$-24s", String.valueOf(h.rating)) +
+								" | Price Per Night: " + String.format("%1$-28s", String.valueOf(h.price))+" |");
+				System.out.println("|=================================================================================================================|");
 			}
 
 			System.out.println(
-				"| output: " + String.format("%1$-36s", quotation.news) + 
-				" | Reference: " + String.format("%1$-34s", quotation.reference) +" |");
-		System.out.println("|=================================================================================================================|");
-			}
+					"| output: " + String.format("%1$-36s", quotation.news) +
+							" | Reference: " + String.format("%1$-34s", quotation.reference) +" |");
+			System.out.println("|=================================================================================================================|");
+		}
 
-		else{ //booking or cancellation 
+		else{ //booking or cancellation
 			System.out.println(
-				"| output: " + String.format("%1$-36s", quotation.news) + 
-				" | Reference: " + String.format("%1$-34s", quotation.reference) +" |");
-		System.out.println("|=================================================================================================================|");
-		
+					"| output: " + String.format("%1$-36s", quotation.news) +
+							" | Reference: " + String.format("%1$-34s", quotation.reference) +" |");
+			System.out.println("|=================================================================================================================|");
+
 		}
 	}
-	
+
 	//for testing
 	public static final ClientInfo[] clients = {
-		new ClientInfo("Dublin", 5, 100.00, LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 7), false, false, false)
+			new ClientInfo("Dublin", 5, 100.00, LocalDate.of(2025, 1, 1), LocalDate.of(2025, 1, 7), false, false, false)
 	};
-	
+
 }
+

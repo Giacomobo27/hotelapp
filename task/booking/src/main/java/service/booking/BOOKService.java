@@ -8,22 +8,7 @@ import service.core.Hotel;
 import java.sql.*;
 import java.util.LinkedList;
 
-/**
- * DGQ is BOOKING
- * endpoint on 8082/quotations
- *
- * need to do:
- *
- * find the hotel indicated by clientinfo inside the DB
- *
- * see if hotel is available within bookin bookout data
- *
- * if yes, modify DB, and return success in quotation.news
- *
- * if no, return failure in quotation.news
- *
- * return quotation (quotation.listhotel can be empty)
- */
+
 public class BOOKService extends MicroService {
 	// All references are to be prefixed with an DG (e.g. DG001000)
 	public static final String PREFIX = "BK";

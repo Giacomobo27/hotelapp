@@ -8,24 +8,8 @@ import service.core.Hotel;
 import java.sql.*;
 import java.util.LinkedList;
 
-/**
- * GA is CANCEL
- * endpoint on 8081/quotations
- *
- *
- * need to do:
- *
- * find the hotel indicated by clientinfo inside the DB
- *
- * see if hotel is booked
- *
- * if yes, modify DB, and return success cancelation in quotation.news
- *
- * if no, return failure cancellation in quotation.news
- *
- * return quotation (quotation.listhotel can be empty)
- *
- */
+
+
 public class CANCService extends MicroService {
 	// All references are to be prefixed with an CA (e.g. CA001000)
 	public static final String PREFIX = "CA";
