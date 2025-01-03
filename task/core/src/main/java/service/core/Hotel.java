@@ -15,8 +15,14 @@ public class Hotel implements Serializable {
         this.rating = rating;
         this.price = price;
     }
-    public Hotel() {}  //empty or not?
-    
+    public Hotel() {}//empty or not?
+
+    public String getName() {
+        return name;
+     }
+     public void setName(String name) {
+        this.name = name;
+     }
     @Override
     public String toString() {
         return "Hotel {name="+name+",address="+address+",rating="+rating+",price="+price+"}";
