@@ -1,5 +1,5 @@
-service\core\Hotel.class
-service\core\Quotation.class
-service\core\MicroService.class
-service\core\Application.class
-service\core\ClientInfo.class
+service/core/ClientInfo.class
+service/core/MicroService.class
+service/core/Application.class
+service/core/Quotation.class
+service/core/Hotel.class

@@ -3,59 +3,89 @@ package service.cancel;
 import service.core.MicroService;
 import service.core.ClientInfo;
 import service.core.Quotation;
-import java.util.LinkedList;
 import service.core.Hotel;
+
+import java.sql.*;
 import java.util.LinkedList;
 
 /**
  * GA is CANCEL
  * endpoint on 8081/quotations
- * 
- * 
+ *
+ *
  * need to do:
- * 
+ *
  * find the hotel indicated by clientinfo inside the DB
- * 
+ *
  * see if hotel is booked
- * 
- * if yes, modify DB, and return success cancelation in quotation.news 
- * 
+ *
+ * if yes, modify DB, and return success cancelation in quotation.news
+ *
  * if no, return failure cancellation in quotation.news
- * 
+ *
  * return quotation (quotation.listhotel can be empty)
- * 
- * 
  *
  */
 public class CANCService extends MicroService {
 	// All references are to be prefixed with an CA (e.g. CA001000)
 	public static final String PREFIX = "CA";
-	
+
 	@Override
 	public Quotation generateQuotation(ClientInfo info) {
-		LinkedList<Hotel> listHotels= new LinkedList<>();
+		LinkedList<Hotel> listHotels = new LinkedList<>();
+		Hotel chosenHotel = null;
+		boolean cancellationSuccessful = false;
 
-		
-//		LinkedList<Hotel> listHotels= new LinkedList<>();
-		//manually putting some hotel for simulation
+		try (Connection connection = DriverManager.getConnection(
+				"jdbc:mysql://localhost:3306/hotelapp", "root", "Hotelapp25@")) {
 
-	    Hotel h1= new Hotel("hotel1","Dublin1",4,100.00);
-	    Hotel h2= new Hotel("hotel2","Dublin2",2,50.00);
-	    Hotel h3= new Hotel("hotel3","Dublin3",3,70.00);
+			// Fetch all hotels from the database
+			String fetchHotelsQuery = "SELECT * FROM hotels";
+			try (Statement statement = connection.createStatement();
+				 ResultSet resultSet = statement.executeQuery(fetchHotelsQuery)) {
 
-	    listHotels.add(h1);
-	    listHotels.add(h2);
-	    listHotels.add(h3);
+				while (resultSet.next()) {
+					String name = resultSet.getString("name");
+					String location = resultSet.getString("location");
+					int rating = resultSet.getInt("rating");
+					double price = resultSet.getDouble("price");
 
-		// If hotel not found, set chosenHotel to null in the quotation
-		Hotel chosenHotel = listHotels.stream().anyMatch(h -> h.equals(info.chosenHotel)) ? info.chosenHotel : null;
+					Hotel hotel = new Hotel(name, location, rating, price);
+					listHotels.add(hotel);
+
+					if (info.chosenHotel != null && info.chosenHotel.getName().equals(name)) {
+						chosenHotel = hotel;
+					}
+				}
+			}
+
+			// Check if the chosen hotel is booked
+			if (chosenHotel != null) {
+				String checkBookingQuery = "SELECT booked FROM hotels WHERE name = ?";
+				try (PreparedStatement preparedStatement = connection.prepareStatement(checkBookingQuery)) {
+					preparedStatement.setString(1, chosenHotel.getName());
+
+					try (ResultSet resultSet = preparedStatement.executeQuery()) {
+						if (resultSet.next() && resultSet.getBoolean("booked")) {
+							// Update booking status to cancel the booking
+							String updateBookingQuery = "UPDATE hotels SET booked = false WHERE name = ?";
+							try (PreparedStatement updateStatement = connection.prepareStatement(updateBookingQuery)) {
+								updateStatement.setString(1, chosenHotel.getName());
+								updateStatement.executeUpdate();
+								cancellationSuccessful = true;
+							}
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		// Generate the quotation and send it back
-		Quotation res= new Quotation(listHotels, chosenHotel, generateReference(PREFIX), "cancellation ecct...", true, false, false);
-		//set cancellation true to identify the type of the quotation
+		String news = cancellationSuccessful ? "Cancellation successful." : "Cancellation failed.";
+		Quotation res = new Quotation(listHotels, chosenHotel, generateReference(PREFIX), news, true, false, false);
 
 		return res;
 	}
-
-
 }
