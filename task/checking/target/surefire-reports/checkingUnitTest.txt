@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: checkingUnitTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.711 s <<< FAILURE! - in checkingUnitTest
+quotationTest  Time elapsed: 2.695 s  <<< ERROR!
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8080/quotations": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect
+	at checkingUnitTest.quotationTest(checkingUnitTest.java:24)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at checkingUnitTest.quotationTest(checkingUnitTest.java:24)
+
