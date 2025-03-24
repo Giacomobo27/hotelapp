@@ -3,13 +3,18 @@
 This project is a microservice-based hotel booking application built using **Spring Boot** and **REST APIs**. It provides functionality for checking availability, booking hotels, canceling reservations, and a broker service for managing workflows. The application also includes a client for interaction.
 
 ---
-
+## System Overview
+1. Central API Gateway (Broker): Oversees incoming queries and directs them to 
+the relevant hotel department or service.
+2. Hotel Microservices (Distributed Nodes): Local room availability, reservations, and cancellations.
+3. Database Systems: A centralized database could consolidate essential data for reporting, analytics, and management objectives.
+---
 ## **Prerequisites**
 
 Ensure you have the following installed on your system:
 
-- **Java** (version 8 or above)
-- **Maven** (latest version recommended)
+- **Java** 
+- **Maven** 
 - A terminal or shell for running commands
 
 ---
@@ -45,7 +50,7 @@ mvn clean install
 If you want to skip the tests:
 
 ```bash
-mvn clean install -Dskip
+mvn clean install -DskipTests
  ```
 Run the microservice:
 
